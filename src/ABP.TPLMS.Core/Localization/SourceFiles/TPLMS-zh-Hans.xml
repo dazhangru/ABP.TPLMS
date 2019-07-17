@@ -30,6 +30,7 @@
     <text name="Users" >用户</text>
     <text name="Roles" >角色</text>
     <text name="Tenants" >租户</text>
+    <text name="Module">模块</text>
     <text name="Logout" >注销</text>
     <text name="ManageMenu" >菜单</text>
     <text name="LabelOptions" >页签操作</text>
@@ -39,6 +40,7 @@
     <text name="Add" >添加</text>
     <text name="Edit" >编辑</text>
     <text name="Delete">删除</text>
+    <text name="Refresh">刷新</text>
     <text name="Find" >查找</text>
     <text name="CreationTime">创建时间</text>
     <text name="Actions">操作</text>
