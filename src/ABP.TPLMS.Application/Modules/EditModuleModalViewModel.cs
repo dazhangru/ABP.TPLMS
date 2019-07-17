@@ -1,4 +1,5 @@
-﻿using ABP.TPLMS.Modules.Dto;
+﻿using ABP.TPLMS.Entities;
+using ABP.TPLMS.Modules.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;

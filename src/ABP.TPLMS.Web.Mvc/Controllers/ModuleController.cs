@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ABP.TPLMS.Controllers;
+using ABP.TPLMS.Entities;
 using ABP.TPLMS.Modules;
 using ABP.TPLMS.Modules.Dto;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +22,7 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
         public IActionResult Index()
         {
             var output = _moduleAppService.GetAllAsync();
-            var model=new EditModuleModalViewModel
+            var model = new EditModuleModalViewModel
             {
                 Module = output.Result.Items.FirstOrDefault(),
                 Modules = output.Result.Items
@@ -41,9 +43,9 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int Id,EditModuleModalViewModel updateDto)
+        public ActionResult Edit(int Id, EditModuleModalViewModel updateDto)
         {
-            if (Id!=updateDto.Module.Id)
+            if (Id != updateDto.Module.Id)
             {
                 return NotFound();
             }
@@ -52,7 +54,7 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
                 try
                 {
                     //????
-                    var module = AutoMapper.Mapper.Map<CreateUpdateModuleDto>(updateDto.Module);
+                    var module = Mapper.Map<CreateUpdateModuleDto>(updateDto.Module);
                     _moduleAppService.UpdateAsync(module);
                 }
                 catch (DbUpdateConcurrencyException ex)
@@ -77,12 +79,12 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
         }
         public IActionResult Edit(long? Id)
         {
-            if (Id==null)
+            if (Id == null)
             {
                 return NotFound();
             }
             var module = _moduleAppService.GetAllAsync().Result.Items.SingleOrDefault(e => e.Id == Id);
-            if (module==null)
+            if (module == null)
             {
                 return NotFound();
             }
@@ -94,12 +96,12 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
         }
         public IActionResult Delete(int? Id)
         {
-            if (Id==null)
+            if (Id == null)
             {
                 return NotFound();
             }
             var module = _moduleAppService.GetAllAsync().Result.Items.SingleOrDefault(e => e.Id == Id);
-            if (module==null)
+            if (module == null)
             {
                 return NotFound();
             }
@@ -110,7 +112,7 @@ namespace ABP.TPLMS.Web.Mvc.Controllers
 
             return View(model);
         }
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int Id)
         {

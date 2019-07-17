@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ABP.TPLMS.Modules.Dto
 {
-    [AutoMapTo(typeof(Module))]
+    [AutoMap(typeof(Module))]
     public class CreateUpdateModuleDto:EntityDto<Module>
     {
         public const int MaxLength = 255;
